@@ -21,23 +21,29 @@ import {
   incrementByValue,
   reset,
 } from './store/actionCreator';
-import { store } from './store';
+import { useDispatch, useSelector } from 'react-redux';
 
-store.subscribe(() => console.log(store.getState()));
+// store.subscribe(() => console.log(store.getState()));
 
-// raising event or action
-store.dispatch(increment());
-store.dispatch(increment());
-store.dispatch(incrementByValue(15));
-store.dispatch(decrement());
-store.dispatch(reset());
+// // raising event or action
+// store.dispatch(increment());
+// store.dispatch(increment());
+// store.dispatch(incrementByValue(15));
+// store.dispatch(decrement());
+// store.dispatch(reset());
 
 function App() {
+  const count = useSelector((state) => state.count);
+  const dispatch = useDispatch();
   return (
     <>
-      <p>10</p>
-      <button>increment</button>
-      <button>decrement</button>
+      <p>{count.value}</p>
+      <button onClick={() => dispatch(increment())}>increment</button>
+      <button onClick={() => dispatch(decrement())}>decrement</button>
+      <button onClick={() => dispatch(reset())}>reset</button>
+      <button onClick={() => dispatch(incrementByValue(10))}>
+        incrementByValue
+      </button>
     </>
   );
 }
