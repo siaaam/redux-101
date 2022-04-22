@@ -15,65 +15,13 @@ import './App.css';
 // action creator
 // action
 
-// action
-const INCREMENT = 'INCREMENT';
-const DECREMENT = 'DECREMENT';
-const RESET = 'RESET';
-const INCREMENTBYVALUE = 'INCREMENTBYVALUE';
-
-import { combineReducers, legacy_createStore as createStore } from 'redux';
-
-const initialState = {
-  value: 0,
-};
-
-// reducer
-const countReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case INCREMENT:
-      return {
-        value: state.value + 1,
-      };
-    case DECREMENT:
-      return {
-        value: state.value - 1,
-      };
-    case RESET:
-      return {
-        value: 0,
-      };
-    case INCREMENTBYVALUE:
-      return {
-        value: state.value + action.payload,
-      };
-    default:
-      return state;
-  }
-};
-
-// combine reducers
-const rootReducers = combineReducers({
-  count: countReducer,
-  another: 30,
-});
-
-// store
-const store = createStore(rootReducers);
-
-// action creator
-
-const increment = () => {
-  return { type: INCREMENT };
-};
-const decrement = () => {
-  return { type: DECREMENT };
-};
-const reset = () => {
-  return { type: RESET };
-};
-const incrementByValue = (num) => {
-  return { type: INCREMENTBYVALUE, payload: num };
-};
+import {
+  decrement,
+  increment,
+  incrementByValue,
+  reset,
+} from './store/actionCreator';
+import { store } from './store';
 
 store.subscribe(() => console.log(store.getState()));
 
