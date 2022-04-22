@@ -21,7 +21,7 @@ const DECREMENT = 'DECREMENT';
 const RESET = 'RESET';
 const INCREMENTBYVALUE = 'INCREMENTBYVALUE';
 
-import { legacy_createStore as createStore } from 'redux';
+import { combineReducers, legacy_createStore as createStore } from 'redux';
 
 const initialState = {
   value: 0,
@@ -51,8 +51,14 @@ const countReducer = (state = initialState, action) => {
   }
 };
 
+// combine reducers
+const rootReducers = combineReducers({
+  count: countReducer,
+  another: 30,
+});
+
 // store
-const store = createStore(countReducer);
+const store = createStore(rootReducers);
 
 // action creator
 
