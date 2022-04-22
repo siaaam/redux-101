@@ -19,6 +19,7 @@ import './App.css';
 const INCREMENT = 'INCREMENT';
 const DECREMENT = 'DECREMENT';
 const RESET = 'RESET';
+const INCREMENTBYVALUE = 'INCREMENTBYVALUE';
 
 import { legacy_createStore as createStore } from 'redux';
 
@@ -41,6 +42,10 @@ const countReducer = (state = initialState, action) => {
       return {
         value: 0,
       };
+    case INCREMENTBYVALUE:
+      return {
+        value: state.value + action.payload,
+      };
     default:
       return state;
   }
@@ -60,12 +65,16 @@ const decrement = () => {
 const reset = () => {
   return { type: RESET };
 };
+const incrementByValue = (num) => {
+  return { type: INCREMENTBYVALUE, payload: num };
+};
 
 store.subscribe(() => console.log(store.getState()));
 
 // raising event or action
 store.dispatch(increment());
 store.dispatch(increment());
+store.dispatch(incrementByValue(15));
 store.dispatch(decrement());
 store.dispatch(reset());
 
