@@ -1,6 +1,6 @@
 import './App.css';
 
-// flow
+// flow -----
 
 // store - from where you manage data
 // reducer - function that manipulate or result ultimate data
